@@ -36,10 +36,10 @@ public class ReservationController {
         this.userService = userService;
     }
 
-    private ReservationResponseDto mapReservationToDto(Reservation reservation) {
-        log.debug("Mapping Reservation to DTO");
-        return new ModelMapper().map(reservation, ReservationResponseDto.class);
-    }
+//    private ReservationResponseDto mapReservationToDto(Reservation reservation) {
+//        log.debug("Mapping Reservation to DTO");
+//        return new ModelMapper().map(reservation, ReservationResponseDto.class);
+//    }
 
     @PostMapping("/createReservation")
     @PreAuthorize("hasAuthority('USER')")
@@ -47,7 +47,7 @@ public class ReservationController {
         log.info("Creating new reservation");
         try {
             Reservation createdReservation = reservationService.createReservation(reservationDto);
-            ReservationResponseDto reservationResponseDto = mapReservationToDto(createdReservation);
+            ReservationResponseDto reservationResponseDto = modelMapper.map(createdReservation, ReservationResponseDto.class);
             log.info("Reservation created successfully {}", reservationResponseDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(reservationResponseDto);
         } catch (Exception e) {
@@ -64,7 +64,7 @@ public class ReservationController {
             List<Reservation> reservations = reservationService.getReservationsByGuestId(((UserDetailsImpl) (userService.loadUserByUsername(username))).getId());
             log.info("Reservations retrieved successfully");
             List<ReservationResponseDto> reservationDtos = reservations.stream()
-                    .map(this::mapReservationToDto)
+                    .map(reservation -> modelMapper.map(reservation, ReservationResponseDto.class))
                     .collect(Collectors.toList());
             log.info("List of reservations returned to user with username: {} are {}", username, reservationDtos);
             return ResponseEntity.ok(reservationDtos);
@@ -82,7 +82,7 @@ public class ReservationController {
             List<Reservation> reservations = reservationService.getReservationsByGuestId(guestId);
             log.debug("Reservations retrieved successfully");
             List<ReservationResponseDto> reservationDtos = reservations.stream()
-                    .map(this::mapReservationToDto)
+                    .map(reservation -> modelMapper.map(reservation, ReservationResponseDto.class))
                     .collect(Collectors.toList());
             return ResponseEntity.ok(reservationDtos);
         } catch (Exception e) {
@@ -114,7 +114,7 @@ public class ReservationController {
             List<Reservation> reservations = reservationService.getAllReservations();
             log.debug("Reservations retrieved successfully");
             List<ReservationResponseDto> reservationDtos = reservations.stream()
-                    .map(this::mapReservationToDto)
+                    .map(reservation -> modelMapper.map(reservation, ReservationResponseDto.class))
                     .collect(Collectors.toList());
             return ResponseEntity.ok(reservationDtos);
         } catch (Exception e) {
@@ -131,7 +131,7 @@ public class ReservationController {
             List<Reservation> reservations = reservationService.getMyReservations();
             log.debug("Reservations retrieved successfully");
             List<ReservationResponseDto> reservationDtos = reservations.stream()
-                    .map(this::mapReservationToDto)
+                    .map(reservation -> modelMapper.map(reservation, ReservationResponseDto.class))
                     .collect(Collectors.toList());
             return ResponseEntity.ok(reservationDtos);
         } catch (Exception e) {
@@ -153,7 +153,7 @@ public class ReservationController {
 
             Reservation updatedReservation = reservationService.updateReservation(reservationId, updateDto);
             log.debug("Reservation updated successfully");
-            return ResponseEntity.ok(mapReservationToDto(updatedReservation));
+            return ResponseEntity.ok(modelMapper.map(updatedReservation, ReservationResponseDto.class));
         } catch (Exception e) {
             log.error("Error updating reservation", e);
             return ResponseEntity.badRequest().build();

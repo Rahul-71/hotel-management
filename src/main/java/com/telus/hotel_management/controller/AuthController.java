@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -59,6 +60,7 @@ public class AuthController {
     }
 
     @PostMapping("/admin/users")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> createUser(@Valid @RequestBody UserRegistrationDto userDto) {
         log.info("Admin received request to create user with username: {}", userDto.getUsername());
         try {
