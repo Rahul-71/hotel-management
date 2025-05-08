@@ -58,7 +58,6 @@ public class ReservationControllerTest {
         return reservation;
     }
 
-
     @Test
     void createReservation_Success() throws Exception, UnauthorizedException {
         ReservationRequestDto request = new ReservationRequestDto();
@@ -84,7 +83,6 @@ public class ReservationControllerTest {
                 reservationController.createReservation(request));
     }
 
-    // Get Reservations by Username Tests
     @Test
     void getReservationsByUsername_Success() {
         String username = "testuser";

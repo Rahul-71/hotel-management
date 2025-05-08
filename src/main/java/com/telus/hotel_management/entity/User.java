@@ -3,6 +3,7 @@ package com.telus.hotel_management.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 @AllArgsConstructor
+@Builder
 @NoArgsConstructor
 public class User {
 

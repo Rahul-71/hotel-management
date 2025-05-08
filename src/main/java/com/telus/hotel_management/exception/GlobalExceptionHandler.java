@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
@@ -23,10 +25,21 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(404).body(new ErrorResponse(ex.getMessage()));
     }
 
-    @ExceptionHandler(UserAlreadyExistsException.class)
-    public ResponseEntity<ErrorResponse> handleUserAlreadyExistsException(UserAlreadyExistsException ex) {
+    @ExceptionHandler({UserAlreadyExistsException.class, MethodArgumentNotValidException.class})
+    public ResponseEntity<ErrorResponse> handleUserAlreadyExistsException(Exception ex) {
         return ResponseEntity.status(400).body(new ErrorResponse(ex.getMessage()));
     }
+
+    @ExceptionHandler({AccessDeniedException.class})
+    public ResponseEntity<ErrorResponse> accessDeniedException(Exception ex) {
+        return ResponseEntity.status(403).body(new ErrorResponse(ex.getMessage()));
+    }
+
+    @ExceptionHandler({InvalidRoleException.class, UnauthorizedException.class})
+    public ResponseEntity<ErrorResponse> unauthorizedException(Exception ex) {
+        return ResponseEntity.status(401).body(new ErrorResponse(ex.getMessage()));
+    }
+    // create a handler for invalid login credentials
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleGlobalException(Exception ex, WebRequest request) {
