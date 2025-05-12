@@ -1,0 +1,1214 @@
+{
+	"info": {
+		"_postman_id": "5df6d4f0-f5ee-43cc-9623-a4654f5f60dc",
+		"name": "HotelBooking Microservice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36133937"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>Status</th>",
+									"        <th>Error Message</th>",
+									"    </tr>",
+									"    <tr>",
+									"        <td>400</td>",
+									"        <td>User with username testuser3 already exists</td>",
+									"    </tr>",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return { response: pm.response.text() }",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"\",\n    \"password\": \"short\",\n    \"email\": \"invalid-email\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"signup"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/signup' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n    \"username\": \"testuser\",\n    \"password\": \"password123\",\n    \"email\": \"user@example.com\"\n}' -v # -v for verbose output to see status code"
+					},
+					"response": [
+						{
+							"name": "add user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"testuser\",\n    \"password\": \"password123\",\n    \"email\": \"user@example.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/signup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"signup"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "User with username testuser already exists"
+						}
+					]
+				},
+				{
+					"name": "signin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"testuser\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"signin"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/signin' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n    \"username\": \"testuser\",\n    \"password\": \"password123\"\n}' -v"
+					},
+					"response": [
+						{
+							"name": "signin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"testuser3\",\n    \"password\": \"password3\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/signin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"signin"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": 9,\n    \"username\": \"testuser3\",\n    \"roles\": [\n        \"USER\"\n    ],\n    \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjMiLCJpYXQiOjE3NDY0MTk4ODgsImV4cCI6MTc0NjUwNjI4OH0.5qni4q9VTWP7fsXP-QPVsdRd7WAnbawT2d9tkDVACPE\"\n}"
+						}
+					]
+				},
+				{
+					"name": "create admins",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin2\",\n    \"password\": \"admin2@123\",\n    \"email\": \"admin2@hotel.com\",\n    \"roles\": [\"HOTEL\", \"ADMIN\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/admin/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"admin",
+								"users"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/admin/users' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Bearer <ADMIN_JWT_TOKEN>' \\\n--data-raw '{\n    \"username\": \"hoteladmin\",\n    \"password\": \"securepassword\",\n    \"email\": \"hotel@example.com\",\n    \"roles\": [\"HOTEL\", \"USER\"]\n}' -v"
+					},
+					"response": [
+						{
+							"name": "Create admin users (authenticated)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0NjQxOTcyMCwiZXhwIjoxNzQ2NTA2MTIwfQ.LhASXs4gVj8rAu2rPUeWcJVViv_Qoq9kwH5ba34tOf0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"admin2\",\n    \"password\": \"admin2@123\",\n    \"email\": \"admin2@hotel.com\",\n    \"roles\": [\"HOTEL\", \"ADMIN\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/admin/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"admin",
+										"users"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "User created successfully with ID: 11"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Rooms",
+			"item": [
+				{
+					"name": "create room (admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomType\": \"Premium\",\n    \"pricePerNight\": 1500\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/rooms/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"rooms",
+								"create"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/rooms/create' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Bearer <ADMIN_JWT_TOKEN>' \\\n--data-raw '{\n    \"roomNumber\": \"101\",\n    \"type\": \"Standard\",\n    \"pricePerNight\": 120.0\n}' -v"
+					},
+					"response": [
+						{
+							"name": "create room (admin)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{adminToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"roomType\": \"Delux\",\n    \"pricePerNight\": 700\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/rooms/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"rooms",
+										"create"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"pricePerNight\": 700.0,\n    \"roomType\": \"Delux\",\n    \"status\": \"AVAILABLE\"\n}"
+						}
+					]
+				},
+				{
+					"name": "updateRoom (admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomType\": \"Standard\",\n    \"pricePerNight\": 570.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/rooms/update/:roomId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"rooms",
+								"update",
+								":roomId"
+							],
+							"variable": [
+								{
+									"key": "roomId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --location --request PUT 'http://localhost:8081/api/rooms/update/<ROOM_ID>' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Bearer <ADMIN_JWT_TOKEN>' \\\n--data-raw '{\n    \"roomNumber\": \"101 Updated\",\n    \"type\": \"Standard Plus\",\n    \"pricePerNight\": 130.0\n}' -v"
+					},
+					"response": [
+						{
+							"name": "updateRoom (admin)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{adminToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"roomType\": \"Standard\",\n    \"pricePerNight\": 570.0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/rooms/update/:roomId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"rooms",
+										"update",
+										":roomId"
+									],
+									"variable": [
+										{
+											"key": "roomId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"pricePerNight\": 570.0,\n    \"roomType\": \"Standard\",\n    \"status\": \"AVAILABLE\"\n}"
+						}
+					]
+				},
+				{
+					"name": "getRoom by roomid (admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/rooms/:roomId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"rooms",
+								":roomId"
+							],
+							"variable": [
+								{
+									"key": "roomId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/rooms/<ROOM_ID>' \\\n--header 'Authorization: Bearer <USER_OR_ADMIN_JWT_TOKEN>' \\\n-v"
+					},
+					"response": [
+						{
+							"name": "getRoom by roomid (admin)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{adminToken}}"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8081/api/rooms/:roomId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"rooms",
+										":roomId"
+									],
+									"variable": [
+										{
+											"key": "roomId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"pricePerNight\": 570.0,\n    \"roomType\": \"Standard\",\n    \"status\": \"AVAILABLE\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get all rooms (user/admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/rooms/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"rooms",
+								"all"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/rooms/all' \\\n--header 'Authorization: Bearer <USER_OR_ADMIN_JWT_TOKEN>' \\\n-v"
+					},
+					"response": [
+						{
+							"name": "get all rooms (user/admin)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8081/api/rooms/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"rooms",
+										"all"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"pricePerNight\": 570.0,\n        \"roomType\": \"Standard\",\n        \"status\": \"AVAILABLE\"\n    },\n    {\n        \"id\": 2,\n        \"pricePerNight\": 470.0,\n        \"roomType\": \"Standard\",\n        \"status\": \"AVAILABLE\"\n    },\n    {\n        \"id\": 3,\n        \"pricePerNight\": 1500.0,\n        \"roomType\": \"Premium\",\n        \"status\": \"AVAILABLE\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "delete room by id (amdin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/rooms/delete/:roomId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"rooms",
+								"delete",
+								":roomId"
+							],
+							"variable": [
+								{
+									"key": "roomId",
+									"value": "3"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --location --request DELETE 'http://localhost:8081/api/rooms/delete/<ROOM_ID>' \\\n--header 'Authorization: Bearer <ADMIN_JWT_TOKEN>' \\\n-v"
+					},
+					"response": [
+						{
+							"name": "delete room by id (amdin)",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{adminToken}}"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8081/api/rooms/delete/:roomId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"rooms",
+										"delete",
+										":roomId"
+									],
+									"variable": [
+										{
+											"key": "roomId",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "Room deleted successfully"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Reservations",
+			"item": [
+				{
+					"name": "createReservation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roomId\": 1,\n    \"checkInDate\": \"2025-06-10\",\n    \"checkOutDate\": \"2025-06-12\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/reservation/createReservation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"reservation",
+								"createReservation"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/reservation/createReservation' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Bearer <USER_JWT_TOKEN>' \\\n--data-raw '{\n    \"roomId\": 1,\n    \"checkInDate\": \"2025-06-10\",\n    \"checkOutDate\": \"2025-06-15\"\n}' -v # Replace 1 with a valid Room ID"
+					},
+					"response": [
+						{
+							"name": "createReservation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"roomId\": 1,\n    \"checkInDate\": \"2025-06-10\",\n    \"checkOutDate\": \"2025-06-12\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/reservation/createReservation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"reservation",
+										"createReservation"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"reservationId\": 2,\n    \"userId\": 2,\n    \"username\": null,\n    \"roomId\": 1,\n    \"checkInDate\": \"2025-06-10\",\n    \"checkOutDate\": \"2025-06-12\",\n    \"totalPrice\": 1140.0,\n    \"status\": \"PENDING\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get all reservation (admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/reservation/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"reservation",
+								"all"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/reservation/all' \\\n--header 'Authorization: Bearer <ADMIN_JWT_TOKEN>' \\\n-v"
+					},
+					"response": [
+						{
+							"name": "get all reservation (admin)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{adminToken}}"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8081/api/reservation/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"reservation",
+										"all"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"reservationId\": 1,\n        \"userId\": 2,\n        \"username\": null,\n        \"roomId\": 1,\n        \"checkInDate\": \"2025-06-10\",\n        \"checkOutDate\": \"2025-06-11\",\n        \"totalPrice\": 570.0,\n        \"status\": \"PENDING\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "get my reservation",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/reservation/my",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"reservation",
+								"my"
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/reservation/my' \\\n--header 'Authorization: Bearer <USER_JWT_TOKEN>' \\\n-v"
+					},
+					"response": [
+						{
+							"name": "get my reservation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8081/api/reservation/my",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"reservation",
+										"my"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"reservationId\": 1,\n        \"userId\": 2,\n        \"username\": null,\n        \"roomId\": 1,\n        \"checkInDate\": \"2025-06-10\",\n        \"checkOutDate\": \"2025-06-11\",\n        \"totalPrice\": 570.0,\n        \"status\": \"PENDING\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "get reservation by username",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/reservation/:username",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"reservation",
+								":username"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "testuser"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/reservation/testuser' \\\n--header 'Authorization: Bearer <ADMIN_JWT_TOKEN>' \\\n-v"
+					},
+					"response": [
+						{
+							"name": "get reservation by username",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{adminToken}}"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8081/api/reservation/:username",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"reservation",
+										":username"
+									],
+									"variable": [
+										{
+											"key": "username",
+											"value": "testuser"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"reservationId\": 1,\n        \"userId\": 2,\n        \"username\": null,\n        \"roomId\": 1,\n        \"checkInDate\": \"2025-06-10\",\n        \"checkOutDate\": \"2025-06-11\",\n        \"totalPrice\": 570.0,\n        \"status\": \"PENDING\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "get reservation by userid",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/reservation/guest/:userId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"reservation",
+								"guest",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "2"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --location 'http://localhost:8081/api/reservation/guest/<USER_ID>' \\\n--header 'Authorization: Bearer <ADMIN_JWT_TOKEN>' \\\n-v"
+					},
+					"response": [
+						{
+							"name": "get reservation by userid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{adminToken}}"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8081/api/reservation/guest/:userId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"reservation",
+										"guest",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"reservationId\": 1,\n        \"userId\": 2,\n        \"username\": null,\n        \"roomId\": 1,\n        \"checkInDate\": \"2025-06-10\",\n        \"checkOutDate\": \"2025-06-11\",\n        \"totalPrice\": 570.0,\n        \"status\": \"CANCELLED\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "update reservation",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"reservationId\": 1,\n    \"status\": \"CONFIRMED\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/reservation/:reservationId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"reservation",
+								":reservationId"
+							],
+							"variable": [
+								{
+									"key": "reservationId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --location --request PUT 'http://localhost:8081/api/reservation/<RESERVATION_ID>' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Bearer <ADMIN_JWT_TOKEN>' \\\n--data-raw '{\n    \"status\": \"CONFIRMED\"\n}'"
+					},
+					"response": [
+						{
+							"name": "update reservation",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{adminToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"reservationId\": 1,\n    \"status\": \"CONFIRMED\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/api/reservation/:reservationId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"reservation",
+										":reservationId"
+									],
+									"variable": [
+										{
+											"key": "reservationId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"reservationId\": 1,\n    \"userId\": 2,\n    \"username\": null,\n    \"roomId\": 1,\n    \"checkInDate\": \"2025-06-10\",\n    \"checkOutDate\": \"2025-06-11\",\n    \"totalPrice\": 570.0,\n    \"status\": \"CONFIRMED\"\n}"
+						}
+					]
+				},
+				{
+					"name": "cancel reservation",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{adminToken}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/reservation/:reservationId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"reservation",
+								":reservationId"
+							],
+							"variable": [
+								{
+									"key": "reservationId",
+									"value": "2"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --location --request DELETE 'http://localhost:8081/api/reservation/<RESERVATION_ID>' \\\n--header 'Authorization: Bearer <USER_JWT_TOKEN>' \\\n-v "
+					},
+					"response": [
+						{
+							"name": "cancel reservation",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{adminToken}}"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8081/api/reservation/:reservationId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"reservation",
+										":reservationId"
+									],
+									"variable": [
+										{
+											"key": "reservationId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "Reservation with reservationId: 2 cancelled successfully"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjMiLCJpYXQiOjE3NDY0MjAyMTksImV4cCI6MTc0NjUwNjYxOX0.0zltwbOqBFYwnDbMsvZAPvatTxx_4bj33j12j3er5pk",
+			"type": "string"
+		},
+		{
+			"key": "adminToken",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
